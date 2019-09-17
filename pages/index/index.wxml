@@ -1,0 +1,25 @@
+<!-- index.wxml -->
+<view class="container">
+  <view class="header" bind:tap="getPosition">
+    <myicon type="dingwei" class="icon"></myicon>
+    <text>{{curLocation}}</text>
+  </view>
+  <view class="content">
+    <!-- 现在的温度 -->
+    <view class='now_tmp'>
+      <text class="text">现在的温度</text>
+      <view class="tmp">
+        <text class="text">温度：</text>
+        <text class="text">{{tmp}}℃</text>
+      </view>
+      <view class="tmp">
+        <text class="text">体感温度：</text>
+        <text class="text">{{fl}}℃</text>
+      </view>
+      <view class="tmp">
+        <text class="text">天气状况：</text>
+        <text class="text">{{cond_txt}}</text>
+      </view>
+    </view>
+  </view>
+</view>
