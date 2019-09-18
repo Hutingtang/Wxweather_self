@@ -2,24 +2,37 @@
 <view class="container">
   <view class="header" bind:tap="getPosition">
     <myicon type="dingwei" class="icon"></myicon>
-    <text>{{curLocation}}</text>
+    <text class="curLocation">{{curLocation}}</text>
   </view>
-  <view class="content">
-    <!-- 现在的温度 -->
-    <view class='now_tmp'>
-      <text class="text">现在的温度</text>
-      <view class="tmp">
-        <text class="text">温度：</text>
-        <text class="text">{{tmp}}℃</text>
+  <scroll-view scroll-y class='scroll-view_Y'>
+    <view class="content">
+      <!-- 现在的温度 -->
+      <view class='now_tmp'>
+        <image src="{{imageSrc}}" class="weatherImage"></image>
+        <view class='cond_txt text'>{{cond_txt}}</view>
+        <view class='now_tmp_num text'>{{tmp}}°</view>
+        <view class='today_info'>
+          <text class="today_weekend text">{{today_weekend}}</text>
+          <text class="text" style="display:inline-block">今天</text>
+          <text class="tmp_max text">{{tmp_max}}</text>
+          <text class="tmp_min text">{{tmp_min}}</text>
+        </view>
+        <scroll-view class='scroll-view_X' scroll-x wx:if="{{daily_hour_arr.length>0?true:false}}">
+          <view class="hour_box" wx:for="{{daily_hour_arr}}">
+            <view class='daily_hour text'>{{item.time}}</view>
+            <view class='hour_cond_txt text'>{{item.cond_txt}}</view>
+            <view class='hour_tmp text'>{{item.tmp}}</view>
+          </view>
+        </scroll-view>
       </view>
-      <view class="tmp">
-        <text class="text">体感温度：</text>
-        <text class="text">{{fl}}℃</text>
-      </view>
-      <view class="tmp">
-        <text class="text">天气状况：</text>
-        <text class="text">{{cond_txt}}</text>
+      <view class="next_tmp">
+        <view class='next_tmp_item' wx:for="{{next_tmp_arr}}">
+          <view class='today_weekend text displayInline'>{{item.weekend}}</view>
+          <view class='cond_txt text displayInline'>{{item.cond_txt_d}}</view>
+          <view class='tmp_max text displayInline'>{{item.tmp_max}}</view>
+          <view class='tmp_min text displayInline'>{{item.tmp_min}}</view>
+        </view>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>
