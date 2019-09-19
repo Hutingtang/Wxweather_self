@@ -2,30 +2,50 @@ const app = getApp()
 import {
     getLiveWeather,
     getHourlyWeather,
-    getNextWeather
+    getNextWeather,
+    getLifeStyle
 } from '../../utils/api'
 
 import {
-    oneDay
+    oneDay,
+    lifestyleText
 } from '../../utils/util'
 //Page Object
 Page({
     data: {
-        curLocation: '沙坪坝',
+        curLocation: '',
         tmp: 20,
         fl: 18,
         latitude: 0, //经度
         longitude: 0, //维度
-        cond_txt: '晴',
-        today_weekend: '星期三',
+        cond_txt: '',
+        today_weekend: '',
         tmp_max: 0, //今日最高温度
         tmp_min: 0, //今日最低温度
         daily_hour_arr: [], //今日小时天气
         next_tmp_arr: [], //后面的天气预报
-        imageSrc:`https://cdn.heweather.com/cond_icon/100.png`,
+        imageSrc:``,
+        daily_obj:{},//日常指数
+        lifestyle:[],//生活指数
+        height:'',//高度
     },
     onLoad() {
         this.initPosition()
+        /**
+         * todo 开启转发
+         */
+        wx.showShareMenu({
+            withShareTicket: true
+        })
+        wx.getSystemInfo({
+            success: (result)=>{
+                this.setData({
+                    height:result.windowHeight
+                })
+            },
+            fail: ()=>{},
+            complete: ()=>{}
+        });
     },
     /**
      * TODO 监听下拉刷新
@@ -128,6 +148,10 @@ Page({
         getNextWeather(result, data => {
             let today_tmp_max = data.data.HeWeather6[0].daily_forecast[0].tmp_max || 0;
             let today_tmp_min = data.data.HeWeather6[0].daily_forecast[0].tmp_min || 0;
+            let daily_obj = data.data.HeWeather6[0].daily_forecast[0] || {};
+            this.setData({
+                daily_obj
+            })
             this.setData({
                 tmp_max: today_tmp_max,
                 tmp_min: today_tmp_min
@@ -143,6 +167,17 @@ Page({
             })
             this.setData({
                 next_tmp_arr
+            })
+        })
+        // 生活指数
+        getLifeStyle(result, data=>{
+            let lifestyleArr = data.data.HeWeather6[0].lifestyle || [];
+            let daily_lifestyle_arr = [];
+            lifestyleArr.forEach((item)=>{
+                daily_lifestyle_arr.push(lifestyleText(item));
+            })
+            this.setData({
+                lifestyle:daily_lifestyle_arr
             })
         })
     }

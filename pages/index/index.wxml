@@ -4,9 +4,8 @@
     <myicon type="dingwei" class="icon"></myicon>
     <text class="curLocation">{{curLocation}}</text>
   </view>
-  <scroll-view scroll-y class='scroll-view_Y'>
-    <view class="content">
-      <!-- 现在的温度 -->
+  <view class="content" style='width:100%;flex:1;height:{{height-35}}px'>
+    <scroll-view scroll-y class='scroll-view_Y'>
       <view class='now_tmp'>
         <image src="{{imageSrc}}" class="weatherImage"></image>
         <view class='cond_txt text'>{{cond_txt}}</view>
@@ -33,6 +32,60 @@
           <view class='tmp_min text displayInline'>{{item.tmp_min}}</view>
         </view>
       </view>
-    </view>
-  </scroll-view>
+      <view class='today_info' style='margin:5px 10px;'>
+        <text class="text">今天:最高温度{{tmp_max}}℃。最低温度{{tmp_min}}℃。今天{{cond_txt}}。</text>
+      </view>
+      <view class='daily_info' style='margin:5px 10px;width:93%'>
+        <view class='daily_item'>
+          <view class='daily_item_line1'>
+            <text class='daily_item_text'>日出</text>
+            <text class='daily_item_data text'>{{daily_obj.sr}}</text>
+          </view>
+          <view class='daily_item_line2'>
+            <text class='daily_item_text'>日落</text>
+            <text class='daily_item_data text'>{{daily_obj.ss}}</text>
+          </view>
+        </view>
+        <view class='daily_item'>
+          <view class='daily_item_line1'>
+            <text class='daily_item_text'>降雨概率</text>
+            <text class='daily_item_data text'>{{daily_obj.pop}}</text>
+          </view>
+          <view class='daily_item_line2'>
+            <text class='daily_item_text'>相对湿度</text>
+            <text class='daily_item_data text'>{{daily_obj.hum}}</text>
+          </view>
+        </view>
+        <view class='daily_item'>
+          <view class='daily_item_line1'>
+            <text class='daily_item_text'>降水量</text>
+            <text class='daily_item_data text'>{{daily_obj.pcpn}}</text>
+          </view>
+          <view class='daily_item_line2'>
+            <text class='daily_item_text'>大气压强</text>
+            <text class='daily_item_data text'>{{daily_obj.pres}}百帕</text>
+          </view>
+        </view>
+        <view class='daily_item'>
+          <view class='daily_item_line1'>
+            <text class='daily_item_text'>可见度</text>
+            <text class='daily_item_data text'>{{daily_obj.vis}}</text>
+          </view>
+          <view class='daily_item_line2'>
+            <text class='daily_item_text'>紫外线指数</text>
+            <text class='daily_item_data text'>{{daily_obj.uv_index}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='today_info' style='margin:5px 10px;'>
+        <text class="text">生活相关指数</text>
+      </view>
+      <view class='daily_info' style='margin:5px 10px;width:93%;'>
+        <view class='lifestyle_item' wx:for='{{lifestyle}}'>
+          <view class='lifestyle_item_line1 text'>{{item.name}}</view>
+          <view class='lifestyle_item_line2 text'>{{item.brf}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 </view>

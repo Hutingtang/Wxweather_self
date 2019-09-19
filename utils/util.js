@@ -22,3 +22,65 @@ export let oneDay = (year, month, date) => {
       return '星期六';
   }
 }
+
+export let lifestyleText = (data) => {
+  let obj = {};
+  switch (data.type) {
+    case "comf":
+      return obj = {
+        name:'舒适度指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "cw":
+      return obj = {
+        name:'洗车指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "drsg":
+      return obj = {
+        name:'穿衣指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "flu":
+      return obj = {
+        name:'感冒指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "sport":
+      return obj = {
+        name:'运动指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "trav":
+      return obj = {
+        name:'旅游指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "uv":
+      return obj = {
+        name:'紫外线指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+    case "air":
+      return obj = {
+        name:'空气指数',
+        brf: data.brf,
+        txt: data.txt
+      }
+      break
+  }
+}
