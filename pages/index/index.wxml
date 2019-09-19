@@ -49,17 +49,17 @@
         <view class='daily_item'>
           <view class='daily_item_line1'>
             <text class='daily_item_text'>降雨概率</text>
-            <text class='daily_item_data text'>{{daily_obj.pop}}</text>
+            <text class='daily_item_data text'>{{daily_obj.pop}}%</text>
           </view>
           <view class='daily_item_line2'>
             <text class='daily_item_text'>相对湿度</text>
-            <text class='daily_item_data text'>{{daily_obj.hum}}</text>
+            <text class='daily_item_data text'>{{daily_obj.hum}}%</text>
           </view>
         </view>
         <view class='daily_item'>
           <view class='daily_item_line1'>
             <text class='daily_item_text'>降水量</text>
-            <text class='daily_item_data text'>{{daily_obj.pcpn}}</text>
+            <text class='daily_item_data text'>{{daily_obj.pcpn}}毫米</text>
           </view>
           <view class='daily_item_line2'>
             <text class='daily_item_text'>大气压强</text>
@@ -69,7 +69,7 @@
         <view class='daily_item'>
           <view class='daily_item_line1'>
             <text class='daily_item_text'>可见度</text>
-            <text class='daily_item_data text'>{{daily_obj.vis}}</text>
+            <text class='daily_item_data text'>{{daily_obj.vis}}公里</text>
           </view>
           <view class='daily_item_line2'>
             <text class='daily_item_text'>紫外线指数</text>
