@@ -7,7 +7,7 @@
   <view class="content" style='width:100%;flex:1;height:{{height-35}}px'>
     <scroll-view scroll-y class='scroll-view_Y'>
       <view class='now_tmp'>
-        <image src="{{imageSrc}}" class="weatherImage"></image>
+        <image src="{{imageSrc}}" class="weatherImage" animation='{{animationData}}'></image>
         <view class='cond_txt text'>{{cond_txt}}</view>
         <view class='now_tmp_num text'>{{tmp}}°</view>
         <view class='today_info'>

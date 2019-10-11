@@ -24,10 +24,11 @@ Page({
         tmp_min: 0, //今日最低温度
         daily_hour_arr: [], //今日小时天气
         next_tmp_arr: [], //后面的天气预报
-        imageSrc:``,
-        daily_obj:{},//日常指数
-        lifestyle:[],//生活指数
-        height:'',//高度
+        imageSrc: ``,
+        daily_obj: {}, //日常指数
+        lifestyle: [], //生活指数
+        height: '', //高度
+        animationData: {}, //动画对象
     },
     onLoad() {
         this.initPosition()
@@ -38,13 +39,13 @@ Page({
             withShareTicket: true
         })
         wx.getSystemInfo({
-            success: (result)=>{
+            success: (result) => {
                 this.setData({
-                    height:result.windowHeight
+                    height: result.windowHeight
                 })
             },
-            fail: ()=>{},
-            complete: ()=>{}
+            fail: () => {},
+            complete: () => {}
         });
     },
     /**
@@ -123,6 +124,9 @@ Page({
             let date = new Date();
             let today_weekend = oneDay(date.getFullYear(), date.getMonth(), date.getDate());
             let imageSrc = `https://cdn.heweather.com/cond_icon/${cond_code}.png`;
+            if (cond_code) {
+                this.startAnimation(); //开始动画
+            }
             this.setData({
                 tmp,
                 fl,
@@ -170,15 +174,44 @@ Page({
             })
         })
         // 生活指数
-        getLifeStyle(result, data=>{
+        getLifeStyle(result, data => {
             let lifestyleArr = data.data.HeWeather6[0].lifestyle || [];
             let daily_lifestyle_arr = [];
-            lifestyleArr.forEach((item)=>{
+            lifestyleArr.forEach((item) => {
                 daily_lifestyle_arr.push(lifestyleText(item));
             })
             this.setData({
-                lifestyle:daily_lifestyle_arr
+                lifestyle: daily_lifestyle_arr
             })
         })
+    },
+    /**
+     * TODO 开始动画，z轴旋转图片
+     */
+    startAnimation() {
+        //step 完成一组动画
+        //export 清除动画数据
+        let animation = wx.createAnimation({
+            duration: 1000,
+            timingFunction: 'ease'
+        })
+        this.animation = animation
+        animation.rotateY(360).step();
+        let n = 0;
+        this.setData({
+            animationData: animation.export()
+        })
+        setInterval(function () {
+            n++;
+            if (n % 2 === 0) {
+                animation.rotateY(360 * n).scale(1.2).step();
+
+            } else {
+                animation.rotateY(360 * n).scale(1).step();
+            }
+            this.setData({
+                animationData: animation.export()
+            })
+        }.bind(this), 2000);
     }
 });
