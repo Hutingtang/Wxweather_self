@@ -13,13 +13,13 @@ import {
 //Page Object
 Page({
     data: {
-        curLocation: '',
-        tmp: 20,
-        fl: 18,
+        curLocation: '',//当前位置
+        tmp: 20,//当前温度
+        fl: 18,//体感温度
         latitude: 0, //经度
         longitude: 0, //维度
-        cond_txt: '',
-        today_weekend: '',
+        cond_txt: '',//天气简述
+        today_weekend: '',//今日周几
         tmp_max: 0, //今日最高温度
         tmp_min: 0, //今日最低温度
         daily_hour_arr: [], //今日小时天气
