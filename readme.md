@@ -1,4 +1,6 @@
 # 天气小程序
+## 体验小程序
+![weather](./static/img/weather.jpg)
 ## 使用方法
 ```
 git clone https://github.com/Hutingtang/Wxweather_self.git
